@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <meta content="width=device-width, initial-scale=1" name="viewport">
+    <link rel="stylesheet" th:href="@{/webjars/bootstrap/3.3.7/css/bootstrap.min.css}" type="text/css"/>
+    <link rel="stylesheet" th:href="@{/css/main.css}" type="text/css"/>
+    <title>Hotel Room List</title>
+</head>
+<body>
+<nav class="navrbar navbar-default">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <button aria-expanded="false" class="navbar-toggle collapse" data-target="#bs-example-navbar-collapse-1"
+                    data-toggle="collapse" type="button">
+                <span class="sr-only"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" th:href="@{/}">Home</a>
+        </div>
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav">
+                <li class="active">
+                    <a href="#">Intro<span class="sr-only"></span></a>
+                </li>
+                <li>
+                    <a th:href="@{/hotelrooms}">Rooms<span class="sr-only"></span></a>
+                </li>
+                <li class="dropdown">
+                    <a aria-expanded="false" aria-haspopup="true" class="dropdown-toggle" data-toggle="dropdown"
+                       href="#" role="button">List<span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                        <li>
+                            <a th:href="@{/user/reserved}">User Profile</a>
+                        </li>
+                        <li>
+                            <a th:href="@{/user}">User Update</a>
+                        </li>
+                        <li>
+                            <a th:href="@{/user/deactivate}">User Deactivation</a>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+            <form class="navbar-form navbar-left">
+                <div class="form-group">
+                    <input class="form-control" placeholder="" type="text">
+                </div>
+                <button class="btn btn-default" type="submit">Search</button>
+            </form>
+            <ul class="nav navbar-nav navbar-right">
+                <li class="dropdown">
+                    <a aria-expanded="false" aria-haspopup="true" class="dropdown-toggle" data-toggle="dropdown"
+                       href="#" role="button">Connect<span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                        <li sec:authorize="isAnonymous()"><a th:href="@{/loginForm}">Login</a></li>
+                        <li sec:authorize="isAnonymous()"><a th:href="@{/registration}">Registration</a></li>
+                        <li sec:authorize="isAuthenticated()"><a th:href="@{/logout}">Logout</a></li>
+                        <li sec:authorize="isAuthenticated()"><a th:href="@{/user/reserved}"}>User Profile</a></li>
+                        <li sec:authorize="isAuthenticated()"><a th:href="@{/user}">User Update</a></li>
+                        <li sec:authorize="isAuthenticated()"><a th:href="@{/user/deactivate}">User Deactivation</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+<div class="container" style="text-align: center;">
+    <a th:href="@{'/hotelrooms/' + ${date.minusDays(1)}}">&lt;&lt; One Day Before</a>
+    <span th:text="|${#temporals.format(date, 'yyyy/M/d')}of Hotel Room|">2019/7/10's Hotel Room</span>
+    <a th:href="@{'/hotelrooms/' + ${date.plusDays(1)}}"> One Day After &gt;&gt; </a>
+</div>
+<div class="container">
+    <div class="row">
+        <ul class="list-group">
+            <li class="list-group-item" th:each="HotelRoom: ${hotelRoomList}">
+                <a
+                        class="list-group-item"
+                        th:href="@{'/reservations/' + ${date} + '/' + ${HotelRoom.hotelRoom.roomId}}"
+                        th:text="${HotelRoom.hotelRoom.roomName}">
+                </a>
+            </li>
+        </ul>
+    </div>
+</div>
+<footer style="background-color: #000000; color:#ffffff">
+    <div class="container">
+        <br>
+        <div class="row">
+            <div class="col-sm-2" style="text-align: center;">
+                <h5>Copyright &copy; 2019</h5>
+                <h5>Geon Wook Ahn</h5>
+            </div>
+            <div class="col-sm-4">
+                <h4>About Me</h4>
+                <p>Rakuten Travel Intern. Penn State. Web Application Developer</p>
+            </div>
+            <div class="col-sm-2">
+                <h4 style="text-align: center;">Navigation</h4>
+                <div class="list-group">
+                    <a class="list-group-item" href="#">Introduction</a>
+                    <a class="list-group-item" href="#">User</a>
+                    <a class="list-group-item" th:href="@{'/hotelrooms' + '/' + ${date}}">List</a>
+                </div>
+            </div>
+            <div class="col-sm-2">
+                <h4 style="text-align: center;">Social Media</h4>
+                <div class="list-group">
+                    <a class="list-group-item" href="#">Facebook</a>
+                    <a class="list-group-item" href="#">Instagram</a>
+                    <a class="list-group-item" href="#">Twitter</a>
+                </div>
+            </div>
+            <div class="col-sm-2">
+                <h4 style="text-align: center;">
+                    <span class="glyphicon glyphicon-ok"></span>&nbsp;by GeonWook Ahn
+                </h4>
+            </div>
+        </div>
+    </div>
+</footer>
+</body>
+<script th:src="@{/webjars/jquery/3.2.1/jquery.min.js/}" type="text/javascript"></script>
+<script th:src="@{/webjars/bootstrap/3.3.7/js/bootstrap.min.js}" type="text/javascript"></script>
+</html>

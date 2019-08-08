@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+    <meta charset="utf-8"/>
+    <meta content="IE=edge" http-equiv="X-UA-Compatible"/>
+    <meta content="width=device-width, initial-scale=1" name="viewport"/>
+
+    <link rel="stylesheet" th:href="@{/webjars/bootstrap/3.3.7/css/bootstrap.min.css}" type="text/css"/>
+    <link rel="stylesheet" th:href="@{/css/main.css}" type="text/css"/>
+
+    <title>Registration</title>
+</head>
+<body>
+<nav class="navrbar navbar-default">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <button aria-expanded="false" class="navbar-toggle collapse" data-target="#bs-example-navbar-collapse-1"
+                    data-toggle="collapse" type="button">
+                <span class="sr-only"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" th:href="@{/}">Home</a>
+        </div>
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav">
+                <li class="active">
+                    <a href="#">Intro<span class="sr-only"></span></a>
+                </li>
+                <li>
+                    <a th:href="@{/hotelrooms}">Rooms<span class="sr-only"></span></a>
+                </li>
+                <li class="dropdown">
+                    <a aria-expanded="false" aria-haspopup="true" class="dropdown-toggle" data-toggle="dropdown"
+                       href="#" role="button">List<span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                        <li>
+                            <a th:href="@{/user/reserved}">User Profile</a>
+                        </li>
+                        <li>
+                            <a th:href="@{/user}">User Update</a>
+                        </li>
+                        <li>
+                            <a th:href="@{/user/deactivate}">User Deactivation</a>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+            <form class="navbar-form navbar-left">
+                <div class="form-group">
+                    <input class="form-control" placeholder="" type="text">
+                </div>
+                <button class="btn btn-default" type="submit">Search</button>
+            </form>
+            <ul class="nav navbar-nav navbar-right">
+                <li class="dropdown">
+                    <a aria-expanded="false" aria-haspopup="true" class="dropdown-toggle" data-toggle="dropdown"
+                       href="#" role="button">Connect<span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                        <li sec:authorize="isAnonymous()"><a th:href="@{/loginForm}">Login</a></li>
+                        <li sec:authorize="isAnonymous()"><a th:href="@{/registration}">Registration</a></li>
+                        <li sec:authorize="isAuthenticated()"><a th:href="@{/logout}">Logout</a></li>
+                        <li sec:authorize="isAuthenticated()"><a th:href="@{/user/reserved}">User Profile</a></li>
+                        <li sec:authorize="isAuthenticated()"><a th:href="@{/user}">User Update</a></li>
+                        <li sec:authorize="isAuthenticated()"><a th:href="@{/user/deactivate}">User Deactivation</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+<div class="container">
+    <div class="row">
+        <div class="col-md-6 col-md-offset-3">
+
+            <div th:if="${#request.getParameter('success')}">
+                <div class="alert alert-info">
+                    Registration Success
+                </div>
+            </div>
+
+            <h1>Registration</h1>
+            <form method="post" th:action="@{/registration}" th:object="${user}">
+                <p class="error-message"
+                   th:each="error : ${#fields.errors('global')}"
+                   th:if="${#fields.hasGlobalErrors()}"
+                   th:text="${error}">Validation error</p>
+                <div class="form-group"
+                     th:classappend="${#fields.hasErrors('userId')}? 'has-error':''">
+                    <label class="control-label" for="userId">User Name</label>
+                    <input class="form-control"
+                           id="userId"
+                           th:field="*{userId}"/>
+                    <p class="error-message"
+                       th:each="error: ${#fields.errors('userId')}"
+                       th:text="${error}">Validation error</p>
+                </div>
+                <div class="form-group"
+                     th:classappend="${#fields.hasErrors('firstName')}? 'has-error':''">
+                    <label class="control-label" for="firstName">First Name</label>
+                    <input class="form-control"
+                           id="firstName"
+                           th:field="*{firstName}"/>
+                    <p class="error-message"
+                       th:each="error: ${#fields.errors('firstName')}"
+                       th:text="${error}">Validation error</p>
+                </div>
+                <div class="form-group"
+                     th:classappend="${#fields.hasErrors('lastName')}? 'has-error':''">
+                    <label class="control-label" for="lastName">Last Name</label>
+                    <input class="form-control"
+                           id="lastName"
+                           th:field="*{lastName}"/>
+                    <p class="error-message"
+                       th:each="error : ${#fields.errors('lastName')}"
+                       th:text="${error}">Validation error</p>
+                </div>
+                <div class="form-group"
+                     th:classappend="${#fields.hasErrors('password')}? 'has-error':''">
+                    <label class="control-label" for="password">Password</label>
+                    <input class="form-control"
+                           id="password"
+                           th:field="*{password}"
+                           type="password"/>
+                    <p class="error-message"
+                       th:each="error : ${#fields.errors('password')}"
+                       th:text="${error}">Validation error</p>
+                </div>
+                <div class="form-group"
+                     th:classappend="${#fields.hasErrors('confirmPassword')}? 'has-error':''">
+                    <label class="control-label" for="confirmPassword">Confirm Password</label>
+                    <input class="form-control"
+                           id="confirmPassword"
+                           th:field="*{confirmPassword}"
+                           type="password"/>
+                    <p class="error-message"
+                       th:each="error : ${#fields.errors('confirmPassword')}"
+                       th:text="${error}">Validation error</p>
+                </div>
+                <div class="form-group">
+                    <button class="btn btn-success" type="submit">Register</button>
+                    <span>Already registered? <a href="/" th:href="@{/loginForm}">Login here</a></span>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<footer style="background-color: #000000; color:#ffffff">
+    <div class="container">
+        <br>
+        <div class="row">
+            <div class="col-sm-2" style="text-align: center;">
+                <h5>Copyright &copy; 2019</h5>
+                <h5>Geon Wook Ahn</h5>
+            </div>
+            <div class="col-sm-4">
+                <h4>About Me</h4>
+                <p>Rakuten Travel Intern. Penn State. Web Application Developer</p>
+            </div>
+            <div class="col-sm-2">
+                <h4 style="text-align: center;">Navigation</h4>
+                <div class="list-group">
+                    <a class="list-group-item" href="#">Introduction</a>
+                    <a class="list-group-item" th:href="@{/hotelrooms}">Rooms</a>
+                    <a class="list-group-item" href="#">List</a>
+                </div>
+            </div>
+            <div class="col-sm-2">
+                <h4 style="text-align: center;">Social Media</h4>
+                <div class="list-group">
+                    <a class="list-group-item" href="#">Facebook</a>
+                    <a class="list-group-item" href="#">Instagram</a>
+                    <a class="list-group-item" href="#">Twitter</a>
+                </div>
+            </div>
+            <div class="col-sm-2">
+                <h4 style="text-align: center;">
+                    <span class="glyphicon glyphicon-ok"></span>&nbsp;by GeonWook Ahn
+                </h4>
+            </div>
+        </div>
+    </div>
+</footer>
+</body>
+<script th:src="@{/webjars/jquery/3.2.1/jquery.min.js/}" type="text/javascript"></script>
+<script th:src="@{/webjars/bootstrap/3.3.7/js/bootstrap.min.js}" type="text/javascript"></script>
+</html>
