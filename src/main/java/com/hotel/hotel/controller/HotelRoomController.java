@@ -26,6 +26,7 @@ public class HotelRoomController {
 			LocalDate date,
 			Model model) {
 		List<ReservableRoom> hotelRoomList = hotelRoomService.findReservableRoomList(date);
+		System.out.println(hotelRoomList);
 		model.addAttribute("hotelRoomList", hotelRoomList);
 		return "hotelRoomList";
 	}

@@ -1,10 +1,10 @@
 package com.hotel.hotel.controller;
 
-import com.example.demo.domain.dto.UserUpdateDTO;
-import com.example.demo.domain.model.Reservation;
-import com.example.demo.domain.model.User;
-import com.example.demo.service.ReservationService;
-import com.example.demo.service.UserService;
+import com.hotel.hotel.domain.dto.UserUpdateDTO;
+import com.hotel.hotel.domain.model.Reservation;
+import com.hotel.hotel.domain.model.User;
+import com.hotel.hotel.service.ReservationService;
+import com.hotel.hotel.service.UserService;
 import java.util.List;
 import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
