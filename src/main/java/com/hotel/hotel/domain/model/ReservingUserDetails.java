@@ -7,6 +7,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 
 public class ReservingUserDetails implements UserDetails {
 
+
 	private final User user;
 
 	public ReservingUserDetails(User user){

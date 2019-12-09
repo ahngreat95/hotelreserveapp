@@ -10,6 +10,7 @@ import lombok.Data;
 @Entity
 @Data
 public class HotelRoom implements Serializable {
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer roomId;

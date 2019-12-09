@@ -14,6 +14,7 @@ import javax.validation.Payload;
 @Target({ElementType.METHOD, ElementType.FIELD, ElementType.ANNOTATION_TYPE, ElementType.CONSTRUCTOR, ElementType.PARAMETER})
 @Retention(RetentionPolicy.RUNTIME)
 public @interface TimeLineTerm {
+
 	String message() default "com.example.demo.annotation.TimeLineTerm.message";
 	Class<?>[] groups() default {};
 	Class<? extends Payload>[] payload() default {};

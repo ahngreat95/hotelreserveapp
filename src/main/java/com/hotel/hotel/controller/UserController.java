@@ -79,5 +79,6 @@ public class UserController {
 		reservationService.cancelAll(user);
 		userService.delete(userId);
 		return "redirect:/logout";
+
 	}
 }

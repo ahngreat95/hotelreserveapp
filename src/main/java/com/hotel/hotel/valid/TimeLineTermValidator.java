@@ -16,4 +16,5 @@ public class TimeLineTermValidator implements ConstraintValidator<TimeLineTerm, 
 		}
 		return value.getMinute()%30 == 0;
 	}
+
 }

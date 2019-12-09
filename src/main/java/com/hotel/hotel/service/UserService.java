@@ -35,6 +35,7 @@ public class UserService implements UserDetailsService {
 		return new ReservingUserDetails(user);
 	}
 
+
 	public User findByUserId(String id) {
 		return userRepository.findById(id).orElse(null);
 	}

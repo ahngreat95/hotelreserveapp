@@ -16,6 +16,7 @@ import javax.validation.Payload;
 @Constraint(validatedBy = FieldMatchValidator.class)
 @Documented
 public @interface FieldMatch
+
 {
 	String message() default "";
 	Class<?>[] groups() default {};

@@ -13,6 +13,7 @@ import javax.validation.Payload;
 @Constraint(validatedBy = {TimeValidCheckerValidator.class})
 @Target({ElementType.TYPE, ElementType.ANNOTATION_TYPE})
 public @interface TimeValidChecker {
+
 	String message() default "{com.example.demo.annotation.TimeValidChecker.message";
 	Class<?>[] groups() default {};
 	Class<? extends Payload>[] payload() default {};

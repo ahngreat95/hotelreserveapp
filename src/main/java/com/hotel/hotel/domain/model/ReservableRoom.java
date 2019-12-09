@@ -17,6 +17,7 @@ import lombok.NoArgsConstructor;
 @Data
 @Builder
 public class ReservableRoom implements Serializable {
+
 	@EmbeddedId
 	private ReservableRoomId reservableRoomId;
 

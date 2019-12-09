@@ -45,6 +45,7 @@ public class ReservationService {
 		return reservation;
 	}
 
+
 	@PreAuthorize("hasRole('ADMIN')" + " or #reservation.user.userId == principal.username")
 	public void cancel(@P("reservation") Reservation reservation){
 		reservationRepository.delete(reservation);

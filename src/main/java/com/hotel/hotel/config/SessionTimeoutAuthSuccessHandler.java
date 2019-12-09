@@ -9,6 +9,7 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.web.authentication.SavedRequestAwareAuthenticationSuccessHandler;
 
 public class SessionTimeoutAuthSuccessHandler extends SavedRequestAwareAuthenticationSuccessHandler {
+
 	public final Duration sessionTimeout;
 
 	public SessionTimeoutAuthSuccessHandler(Duration sessionTimeout) {

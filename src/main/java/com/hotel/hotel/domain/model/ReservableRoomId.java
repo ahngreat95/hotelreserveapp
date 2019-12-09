@@ -15,6 +15,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @Builder
 public class ReservableRoomId implements Serializable {
+
 	private Integer roomId;
 	private LocalDate reservedDate;
 }

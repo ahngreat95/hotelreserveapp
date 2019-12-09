@@ -33,6 +33,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Controller
 @RequestMapping("/reservations/{date}/{roomId}")
 public class ReservationController {
+
 	@Autowired
 	HotelRoomService hotelRoomService;
 

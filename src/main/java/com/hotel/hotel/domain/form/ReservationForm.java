@@ -14,6 +14,7 @@ import org.springframework.format.annotation.DateTimeFormat;
 @TimeValidChecker(message = "The End Time Cannot Faster Than The Start Time")
 public class ReservationForm implements Serializable {
 
+
 	@NotNull(message = "Required Field")
 	@TimeLineTerm(message = "Please input by 30 minutes term")
 	@DateTimeFormat(pattern = "HH:mm")

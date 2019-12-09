@@ -72,6 +72,7 @@ INSERT INTO users (user_id, first_name, last_name, role_name, password) VALUES (
 INSERT INTO users (user_id, first_name, last_name, role_name, password) VALUES ('rakuten14', 'Ba', 'Li', 'USER', '$2a$10$YWKeCzxnOg81AgCcLUmcb.YlCD55RNKsVXPXCnGtY9RTQkEZ4RSTu');
 
 
+
 DROP FUNCTION IF EXISTS REGISTER_RESERVABLE_ROOMS();
 CREATE OR REPLACE FUNCTION REGISTER_RESERVABLE_ROOMS()
     RETURNS INT AS $$

@@ -14,6 +14,7 @@ import org.springframework.transaction.annotation.Transactional;
 @Transactional
 public class HotelRoomService {
 
+
 	@Autowired
 	ReservableRoomRepository reservableRoomRepository;
 

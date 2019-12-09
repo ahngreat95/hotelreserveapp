@@ -6,6 +6,7 @@ import lombok.Data;
 
 @FieldMatch.List({
 		@FieldMatch(first = "password", second = "confirmPassword", message = "The Password Fields Are Not Matched")})
+
 @Data
 public class UserUpdateDTO {
 	@NotEmpty
